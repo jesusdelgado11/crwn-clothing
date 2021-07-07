@@ -14,7 +14,7 @@ class Directory extends React.Component{
                   title: 'hats',
                   imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
                   id: 1,
-                  linkUrl: 'shop/hats'
+                  linkUrl: 'hats'
                 },
                 {
                   title: 'jackets',
@@ -49,8 +49,15 @@ class Directory extends React.Component{
         return (
             <div className='directory-menu'>
                 {
-                    this.state.sections.map(({ title, imageUrl, id, size}) => (
-                       <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />  
+                    /* this is changed this.state.sections.map(({ title, imageUrl, id, size}) => (
+                      <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />   
+                      to ...otherSectionProps
+                        id is not removed because we are not passing it as id
+                        we are passing it as key
+                        otherSectionProps will pass all the values in the list
+                      */
+                      this.state.sections.map(({ id, ...otherSectionProps}) => (
+                       <MenuItem key={id} {...otherSectionProps} />  
                     ))
                 }
             </div>

@@ -1,9 +1,16 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 import './menu-item.styles.scss';
 
-const MenuItem = ({ title, imageUrl, size }) => (
-    <div className={`${size} menu-item`}>
+/*
+    history and match are comming from props and linkUrl is coming from directory list
+*/
+const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
+    <div 
+    className={`${size} menu-item`}
+    onClick={() => history.push(`${match.url}${linkUrl}`)}
+    >
         <div className='background-image'           
             style={{
                 backgroundImage: `url(${imageUrl})`
@@ -16,4 +23,9 @@ const MenuItem = ({ title, imageUrl, size }) => (
     </div>
 ); 
 
-export default MenuItem;
+/*
+   withRouter will give us access to url props 
+   like history { title, imageUrl, size, history }
+*/
+
+export default withRouter(MenuItem);
